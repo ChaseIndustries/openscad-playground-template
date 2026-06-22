@@ -1,0 +1,23 @@
+{
+  "parts": [
+    {"idx": 1, "name": "Base wall",      "slug": "base",  "group": "Bracket",
+     "orient": "+Y face = back, +Z = up; hinge knuckle along top edge"},
+    {"idx": 2, "name": "Lid",            "slug": "lid",   "group": "Bracket",
+     "orient": "rotates around X (hinge); 0° = closed, 90° = upright"},
+    {"idx": 3, "name": "Mounting plate", "slug": "plate", "group": "Bracket",
+     "orient": "lies flat on Z=0; four corner holes"}
+  ],
+  "modes": [
+    {"id": 0, "name": "Assembly",        "type": "pose"},
+    {"id": 1, "name": "Exploded",        "type": "pose"},
+    {"id": 5, "name": "Print: base",     "type": "print", "stl_name": "PRINT_BASE"},
+    {"id": 6, "name": "Print: lid",      "type": "print", "stl_name": "PRINT_LID"},
+    {"id": 7, "name": "Print: plate",    "type": "print", "stl_name": "PRINT_PLATE"}
+  ],
+  "variables": [
+    {"name": "lid_angle", "type": "float",
+     "label": "Lid angle (deg)", "min": 0, "max": 90, "step": 5, "default": 0,
+     "hotkey": "l"}
+  ],
+  "color_schemes": ["qa", "mono"]
+}

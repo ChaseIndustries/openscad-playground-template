@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "description": "Per-mode shot catalog. Each shot is one of: {view, dist} | {view, fit: 'viewall'} | {view, fit: {scale: N}} | {camera: 'tx,ty,tz,rx,ry,rz,dist'}. Optional `parts: [idx, ...]` solos those parts (same as PARTS= env). Optional `fixed_dist: true` keeps catalog dist (no --viewall).",
+  "defaults": {"view": "iso_fr", "dist": 200},
+  "modes": {
+    "0": {
+      "part_slug": "assembly",
+      "shots": {
+        "default": {"view": "iso_fr_lo", "fit": "viewall"},
+        "front":   {"view": "front",     "fit": "viewall"},
+        "right":   {"view": "right",     "fit": "viewall"},
+        "top":     {"view": "top",       "fit": "viewall"}
+      }
+    },
+    "1": {
+      "part_slug": "assembly_exploded",
+      "shots": {
+        "default": {"view": "iso_fr_lo", "fit": "viewall"}
+      }
+    },
+    "5": {
+      "part_slug": "print_base",
+      "shots": {
+        "default":   {"view": "iso_fr_lo", "fit": "viewall"},
+        "bed_face":  {"view": "bottom",    "fit": "viewall"},
+        "back":      {"view": "back",      "fit": "viewall"}
+      }
+    },
+    "6": {
+      "part_slug": "print_lid",
+      "shots": {
+        "default":   {"view": "iso_fr_lo", "fit": "viewall"},
+        "bed_face":  {"view": "bottom",    "fit": "viewall"}
+      }
+    },
+    "7": {
+      "part_slug": "print_plate",
+      "shots": {
+        "default":  {"view": "iso_fr_lo", "fit": "viewall"},
+        "top":      {"view": "top",       "fit": "viewall"}
+      }
+    }
+  }
+}

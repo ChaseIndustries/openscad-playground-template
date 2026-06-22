@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "prefix": "QA_VIEWPORT",
+  "producer": "Cyberdeck.scad (block with qa_dump_viewport)",
+  "description": "Single-line console echo after F5. First seven values are OpenSCAD --camera= (tx,ty,tz,rx,ry,rz,dist). Optional eighth and ninth fields are not part of --camera.",
+  "fields": [
+    { "index": 0, "name": "vpt_x", "openscad": "$vpt[0]", "role": "camera" },
+    { "index": 1, "name": "vpt_y", "openscad": "$vpt[1]", "role": "camera" },
+    { "index": 2, "name": "vpt_z", "openscad": "$vpt[2]", "role": "camera" },
+    { "index": 3, "name": "vpr_x", "openscad": "$vpr[0]", "role": "camera" },
+    { "index": 4, "name": "vpr_y", "openscad": "$vpr[1]", "role": "camera" },
+    { "index": 5, "name": "vpr_z", "openscad": "$vpr[2]", "role": "camera" },
+    { "index": 6, "name": "vpd", "openscad": "$vpd", "role": "camera" },
+    {
+      "index": 7,
+      "name": "mode",
+      "openscad": "mode",
+      "role": "metadata",
+      "optional": true,
+      "note": "Same integer as -D mode= for that preview."
+    },
+    {
+      "index": 8,
+      "name": "qa_capture_projection",
+      "openscad": "qa_capture_projection",
+      "role": "metadata",
+      "optional": true,
+      "note": "Typically ortho or perspective; echoed separately as QA_PROJECTION as well."
+    }
+  ],
+  "parser": ".agents/skills/verify-design/scripts/qa_viewport_format.py",
+  "human_doc": "docs/OPENSCAD_CLI.md (QA_VIEWPORT section)"
+}

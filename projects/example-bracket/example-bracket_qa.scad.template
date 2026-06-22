@@ -1,0 +1,45 @@
+// LOCAL ONLY (gitignored): create with `cp example-bracket_qa.scad.template example-bracket_qa.scad`
+// or run any qa-* script / qa-repl.py and it will copy this template on first use.
+//
+// Included from example-bracket.scad after mode constants. CLI `-D mode=N` overrides `mode` below.
+
+// ── Visualization / preview ──
+viz_opacity = 1;
+show_color_coded = true;
+color_scheme = 0;
+
+// ── Per-part visibility (REPL toggles these) ──
+viz_show_part_1 = true;  // base
+viz_show_part_2 = true;  // lid
+viz_show_part_3 = true;  // plate
+
+// ── REPL-exposed variables ──
+lid_angle = 0;          // 0..90 degrees; REPL slider step 5
+
+// QA_REPL_MODE
+// REPL rewrites the first `mode = N;` line below this marker.
+//mode = 5;
+mode = 0;
+
+// ── Echo viewport on F5 (parse with qa_viewport_format.py) ──
+qa_dump_viewport = true;
+qa_capture_projection = "ortho";
+
+// QA_INTERACTIVE_CAMERA_BEGIN
+_orbit_vpt = [0, 0, 0];
+_orbit_vpr = [55, 0, 25];
+_orbit_vpd = 140;
+// QA_INTERACTIVE_CAMERA_END
+
+// Optional: lock the GUI preview camera to _orbit_* (uncomment for manual sync).
+// $vpt = _orbit_vpt;
+// $vpr = _orbit_vpr;
+// $vpd = _orbit_vpd;
+
+// Required echo for the QA_VIEWPORT console line (Cyberdeck-style; see
+// docs/OPENSCAD_CLI.md and .agents/skills/verify-design/data/qa-viewport-format.json).
+if (qa_dump_viewport)
+  echo(str("QA_VIEWPORT ",
+           $vpt[0], ",", $vpt[1], ",", $vpt[2], ",",
+           $vpr[0], ",", $vpr[1], ",", $vpr[2], ",",
+           $vpd, ",", mode, ",", qa_capture_projection));

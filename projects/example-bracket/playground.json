@@ -1,0 +1,7 @@
+{
+  "scad_entry":       "example-bracket.scad",
+  "qa_scad":          "example-bracket_qa.scad",
+  "qa_scad_template": "example-bracket_qa.scad.template",
+  "data_dir":         "data",
+  "build_dir":        "build"
+}

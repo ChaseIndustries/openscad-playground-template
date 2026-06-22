@@ -1,0 +1,44 @@
+# Per-project local QA state
+projects/*/qa.scad
+projects/*/*_qa.scad
+!projects/*/qa.scad.template
+!projects/*/*_qa.scad.template
+
+# Build artifacts
+build/
+projects/*/build/
+projects/*/*.stl
+projects/*/*.3mf
+!projects/*/assembly.3mf
+*.deps
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.python-version
+
+# OpenSCAD backups
+*.scad.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Active project pointer
+.playground-active
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+
+# Global viewer pointer (generated)
+/playground-active.scad

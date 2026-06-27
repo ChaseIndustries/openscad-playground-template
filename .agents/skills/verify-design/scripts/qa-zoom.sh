@@ -40,6 +40,9 @@ Environment:
   QA_COLORSCHEME=   --colorscheme= value (Cornfield|Metallic|"Tomorrow Night"|...)
   IMGSIZE=1600,900
   QA_MANIFEST=1     Append qa-manifest.json
+  QA_CACHE_SHOT=name  After render, persist the resolved CAMERA into the project's
+                       qa-part-views.json under shots[name] for this mode. Set
+                       QA_CACHE_SHOT=default to use as the next agent's default.
   DRY_RUN=1
   PARTS=a,b         Show only these parts (indices or slugs from repl-config.json)
   HIDE=a,b          Hide these parts. Cannot combine with PARTS.
@@ -187,4 +190,8 @@ if [[ "${QA_DIAG_VIEWALL:-0}" == "1" ]] && [[ "${THROWN:-0}" != "1" ]]; then
 fi
 qa_manifest_write "$QA_DIR" "qa-zoom.sh" "$MODE"
 echo "Zoom: $OUT"
+if [[ -n "${QA_CACHE_SHOT:-}" ]]; then
+  bash "${_SCRIPT_DIR}/qa-part-view-from-viewport.sh" "$MODE" --camera "$CAM" --shot "$QA_CACHE_SHOT"
+  echo "Cached: qa-part-views.json mode ${MODE} shot '${QA_CACHE_SHOT}'"
+fi
 echo "QA dir: $QA_DIR"

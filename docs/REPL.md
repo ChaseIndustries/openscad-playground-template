@@ -43,7 +43,7 @@ live.
 
 | Field    | Type   | Notes |
 |----------|--------|-------|
-| `idx`    | int    | Part index; the REPL toggles `viz_show_part_<idx> = true/false` in `qa.scad` |
+| `idx`    | int    | Part index; the REPL toggles `viz_show_part_<idx> = true/false` in `qa.scad`. `id` works too |
 | `name`   | string | Display name in the panel |
 | `slug`   | string | Lowercase identifier used by `PARTS=`/`HIDE=` env vars |
 | `group`  | string | Optional grouping header in the panel |

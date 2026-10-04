@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "defaults": {
+    "view": "iso_fr",
+    "dist": 200
+  },
+  "modes": {
+    "0": {
+      "part_slug": "gallery_all_parts",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "1": {
+      "part_slug": "raspberry_pi_5",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "2": {
+      "part_slug": "pi_5_active_cooler_ai_hat_2",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "3": {
+      "part_slug": "pico_pico_2_w",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "4": {
+      "part_slug": "heltec_wifi_lora_32_v4",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "5": {
+      "part_slug": "rtl_sdr_bare_pcb",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "6": {
+      "part_slug": "fe1_1s_usb_hub",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "7": {
+      "part_slug": "tp4056_charger",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "8": {
+      "part_slug": "5v_boost",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "9": {
+      "part_slug": "srd_05_relay",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "10": {
+      "part_slug": "usb_c_pd_breakout",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "11": {
+      "part_slug": "kerwinn_barrier_block",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "12": {
+      "part_slug": "perfboard_21x23",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "13": {
+      "part_slug": "tps43_trackpad",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "14": {
+      "part_slug": "6_pin_fpc_breakout",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "15": {
+      "part_slug": "7_dsi_display",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "16": {
+      "part_slug": "3_12_ssd1322_oled",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "17": {
+      "part_slug": "5mm_led_bezel",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "18": {
+      "part_slug": "16mm_pushbutton",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "19": {
+      "part_slug": "sma_bulkhead",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "20": {
+      "part_slug": "lipo_6000mah",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "21": {
+      "part_slug": "m_2_2280_ssd",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "22": {
+      "part_slug": "mx_switch_keycap",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "30": {
+      "part_slug": "cutter_check_panel",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "40": {
+      "part_slug": "nopscadlib_side_by_side",
+      "shots": {
+        "default": {
+          "view": "iso_fr_lo",
+          "fit": "viewall"
+        }
+      }
+    },
+    "41": {
+      "part_slug": "nopscadlib_overlay",
+      "shots": {
+        "default": {
+          "view": "top",
+          "fit": "viewall"
+        }
+      }
+    }
+  }
+}

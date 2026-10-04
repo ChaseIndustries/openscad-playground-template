@@ -17,10 +17,15 @@ That gives you a working skeleton with:
 - `playground.json` — paths
 - `repl-config.json` — minimal parts/modes/variables/color_schemes
 - `data/qa-part-views.json` — empty catalog with two shots
+- `qa-repl.py` — symlink to `scripts/qa-repl.py`; run `./qa-repl.py` from the project folder
+- `Makefile` — symlink to the root `Makefile`; `make start` opens the REPL
 
 ## What to fill in
 
 1. **Real geometry** in `widget.scad` — replace the placeholder cube.
+   Pull every bought part (boards, sensors, servos, displays, screws) from
+   `lib/components/` or `lib/NopSCADlib/` before modelling it yourself.
+   See [Electronic component library](#electronic-component-library).
 2. **Modes** — every printable variant gets a `mode == PRINT_X` branch.
    Mirror them in `repl-config.json` `modes` with `type: "print"` so
    `export_parts.sh` picks them up.
@@ -42,11 +47,13 @@ projects/widget/
 ├── widget_qa.scad              # gitignored; auto-created
 ├── playground.json
 ├── repl-config.json
+├── README.md
+├── ASSEMBLY.md                 # parts list + build steps, when needed (see AGENTS.md)
 ├── data/
 │   ├── qa-part-views.json
 │   ├── overlap-pairs.json      # optional, see verify-design skill
 │   └── qa-expected-genus.json  # optional
-└── build/                      # gitignored output
+└── build/                      # gitignored QA output (STLs go to the root build/<slug>/)
 ```
 
 ## Naming conventions
@@ -66,10 +73,33 @@ put them in `<workbench>/lib/` (create it as needed) and include from each:
 include <../../lib/shared/helpers.scad>;
 ```
 
-The sandbox symlinks the project dir — files outside the project won't be
-included in the sandbox copy, but symlinks at the project level are preserved.
-For larger sharing concerns, factor the shared geometry into its own project
-and import as a module.
+The sandbox mirrors the workbench layout (`<tmp>/projects/<slug>` next to a
+`<tmp>/lib` symlink), so `../../lib/...` resolves the same in QA renders as it
+does in the GUI. Anything else outside the project dir is not carried over.
+
+### Electronic component library
+
+`lib/components/` holds ready-made models of real boards and panel parts:
+Raspberry Pi 5 (with Active Cooler and AI HAT+ 2), Pico, Heltec LoRa 32 V4,
+displays, power modules, terminal blocks, panel LEDs/buttons/SMA jacks and
+more. Each one comes with its dimensions, a ghost model, a keep-out envelope,
+a hole pattern and panel cutters. See `lib/components/README.md`, and browse
+them all in `projects/component-gallery`.
+
+NopSCADlib is vendored as a submodule at `lib/NopSCADlib` for everything the
+component library does not cover. Run `git submodule update --init` after
+cloning. Search it with `grep -rn 'Pi Zero' lib/NopSCADlib/vitamins` and
+include just the one vitamin file you need:
+
+```scad
+include <../../lib/NopSCADlib/core.scad>;
+include <../../lib/NopSCADlib/vitamins/pcbs.scad>;
+pcb(RPI0);   // centred on the board outline, unlike lib/components
+```
+
+Check both libraries before modelling a bought part from scratch. A ghost
+from the library, with your holes and cutouts driven off its dimensions,
+keeps the print honest.
 
 ## Committing
 

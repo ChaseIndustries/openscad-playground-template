@@ -10,6 +10,7 @@ projects/*/build/
 projects/*/*.stl
 projects/*/*.3mf
 !projects/*/assembly.3mf
+!projects/*/print-plate.3mf
 *.deps
 
 # Python

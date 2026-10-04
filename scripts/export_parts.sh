@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Export all printable STL parts for the active openscad-playground project.
 #
+# Writes build/<project>/<stl_name>.stl at the workbench root.
 # Modes/names come from the project's repl-config.json (entries where
 # type == "print" — stl_name is the output basename).
 #
@@ -22,7 +23,7 @@ source "${_QA_SCRIPTS}/qa-common.sh"
 
 qa_project_resolve || exit $?
 OPENSCAD="${OPENSCAD:-openscad}"
-BUILD="${PLAYGROUND_ROOT}/build"
+BUILD="${PLAYGROUND_ROOT}/build/${PLAYGROUND_PROJECT}"
 REPL_CFG="${PLAYGROUND_PROJECT_DIR}/repl-config.json"
 
 if ! "$OPENSCAD" --version >/dev/null 2>&1; then
@@ -91,7 +92,7 @@ fi
 PASS=0; FAIL=0
 while IFS=$'\t' read -r mode name; do
   [[ -z "$mode" ]] && continue
-  out="$BUILD/${PLAYGROUND_PROJECT}--${name}.stl"
+  out="$BUILD/${name}.stl"
   echo -n "Exporting mode $mode → $out ... "
   if "$OPENSCAD" -o "$out" --render --export-format binstl -D "mode=$mode" "$PROJECT_SCAD" 2>/dev/null; then
     echo "OK"; PASS=$((PASS+1))

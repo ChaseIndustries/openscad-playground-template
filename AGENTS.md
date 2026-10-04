@@ -63,6 +63,53 @@ bash .agents/skills/verify-design/scripts/qa-sandbox.sh --cleanup "$QA_SANDBOX"
 The sandbox-root copy of `<project>_qa.scad` belongs to the **user's GUI**.
 **Never hand-edit it** from an agent.
 
+## Assembly guides and parts lists
+
+A project gets an `ASSEMBLY.md` when it has more than one printed part,
+any bought hardware or electronics, or an assembly order that is not
+obvious. A single part that prints and is done needs only its README.
+
+`ASSEMBLY.md` holds, in this order:
+
+1. **Parts list.** It doubles as a shopping list, so someone can order
+   from it without opening the SCAD.
+   - Printed parts: qty, part, mode, material.
+   - Every electronic component: qty, part, a search term or spec precise
+     enough to buy the right thing, rough cost, and where it goes. Include
+     the unglamorous bits: power supplies, adapters, cables, extension
+     leads, resistors, connectors. Mark anything the user already owns in
+     a **Have** column, and end with a rough total.
+   - Hardware: qty, part, where it goes. Say when one assortment kit
+     covers it.
+   - Supplies and tools.
+2. **Print table.** Mode, orientation, and anything to measure first.
+3. **Numbered build steps.** One action per step, in the order a person
+   actually builds it.
+4. **Wiring table** if there are electronics. Pin numbers and GPIO names.
+5. **Troubleshooting** for the failures you can predict.
+
+The parts list in `ASSEMBLY.md` is the only one. The README links to it
+instead of keeping a second copy. Any change that adds, removes, or
+resizes a part, fastener, or board updates the list in the same commit.
+
+## Bought parts come from the component library
+
+Before you model any part someone buys (a board, sensor, servo, display,
+fan, screw, nut, insert), look it up in this order:
+
+1. `lib/components/` (see its README). Measured parts in our house style.
+2. `lib/NopSCADlib/vitamins/` (git submodule). Hundreds of boards, displays,
+   fasteners, inserts, fans and PSUs. `grep -rn '<part name>'
+   lib/NopSCADlib/vitamins` finds most things. Include only the file you
+   need, never `lib.scad`.
+3. Only then model it in the project. If it would be useful elsewhere, add
+   it to `lib/components/` instead.
+
+Use the library model for the ghost, and drive holes, standoffs and cutouts
+off its hole list and dimensions, so the print cannot drift from the part.
+This applies to new projects and to edits of old ones: when you touch a
+hand modelled ghost that a library already covers, swap it.
+
 ## OpenSCAD editing rules
 
 - Before editing any module, read the FULL module to understand all features.
@@ -89,6 +136,7 @@ project's directory. The QA helpers do this for you.
 - `docs/REPL.md` — `repl-config.json` schema and REPL key bindings
 - `docs/NEW_PROJECT.md` — how to add a new object to the monorepo
 - `docs/OPENSCAD_CLI.md` — CLI flags, camera gotchas, viewport format
+- `lib/components/README.md` — shared electronic component models (Pi, Pico, LoRa, displays, power modules, panel parts). Check here, then NopSCADlib, before modelling any bought part
 - `.agents/skills/verify-design/SKILL.md` — the QA skill itself
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:7510c1e2 -->

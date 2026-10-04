@@ -256,7 +256,7 @@ project's entry SCAD in the GUI):
 
 - **`scripts/export_parts.sh`** — Exports every `repl-config.json` mode with
   `type: "print"` (`tests`, `all`, or explicit mode numbers also accepted).
-  Output: `projects/<slug>/build/<STL_NAME>.stl`. Set **`OPENSCAD`** if the
+  Output: `build/<slug>/<STL_NAME>.stl` at the workbench root. Set **`OPENSCAD`** if the
   binary path differs.
 
 PNG / ortho QA scripts (`.agents/skills/verify-design/scripts/`) use the same

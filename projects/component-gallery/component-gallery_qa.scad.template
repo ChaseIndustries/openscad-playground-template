@@ -1,0 +1,29 @@
+// Local-only QA include (gitignored: component-gallery_qa.scad).
+// Copied to component-gallery_qa.scad on first use by qa-* scripts and the REPL.
+
+// Visibility & assembly preview.
+viz_opacity = 1;
+show_color_coded = true;
+color_scheme = 0;
+
+// Per-part visibility (the REPL toggles these via 'viz_show_part_N' vars).
+// Add lines matching the indices in repl-config.json "parts".
+//viz_show_part_1 = true;
+
+// QA_REPL_MODE
+// REPL rewrites the first `mode = N;` line after this marker.
+//mode = 5;
+mode = 0;
+
+// Variables surfaced by the REPL (one line per repl-config.json "variables" entry).
+//lid_angle = 0;
+
+// Echo QA_VIEWPORT after F5 (see docs/OPENSCAD_CLI.md).
+qa_dump_viewport = true;
+qa_capture_projection = "ortho";
+
+// QA_INTERACTIVE_CAMERA_BEGIN
+_orbit_vpt = [0, 0, 0];
+_orbit_vpr = [55, 0, 25];
+_orbit_vpd = 140;
+// QA_INTERACTIVE_CAMERA_END

@@ -1,0 +1,7 @@
+{
+  "scad_entry":       "component-gallery.scad",
+  "qa_scad":          "component-gallery_qa.scad",
+  "qa_scad_template": "component-gallery_qa.scad.template",
+  "data_dir":         "data",
+  "build_dir":        "build"
+}

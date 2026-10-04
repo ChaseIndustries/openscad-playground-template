@@ -9,6 +9,8 @@
 #   projects/widget/playground.json       — entry SCAD, qa.scad paths, etc.
 #   projects/widget/repl-config.json      — empty parts/modes/variables
 #   projects/widget/data/qa-part-views.json — empty catalog
+#   projects/widget/qa-repl.py            — symlink to scripts/qa-repl.py
+#   projects/widget/Makefile              — symlink to Makefile (`make start`)
 set -euo pipefail
 
 SLUG="${1:?Usage: new-project.sh <slug>}"
@@ -33,6 +35,11 @@ cat > "$DIR/${SLUG}.scad" <<EOF
 // Switch what gets rendered/exported via -D mode=N (or set mode in ${SLUG}_qa.scad).
 
 include <${SLUG}_qa.scad>;
+// Bought parts: check lib/components (README) and lib/NopSCADlib/vitamins
+// before modelling one. For example:
+// include <../../lib/components/raspberry_pi_pico.scad>;
+// include <../../lib/NopSCADlib/core.scad>;
+// include <../../lib/NopSCADlib/vitamins/pcbs.scad>;
 
 \$fn = 64;
 
@@ -123,6 +130,9 @@ cat > "$DIR/data/qa-part-views.json" <<'EOF'
   }
 }
 EOF
+
+ln -s ../../scripts/qa-repl.py "$DIR/qa-repl.py"
+ln -s ../../Makefile "$DIR/Makefile"
 
 echo "Created $DIR"
 echo ""

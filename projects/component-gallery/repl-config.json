@@ -1,0 +1,139 @@
+{
+  "parts": [],
+  "modes": [
+    {
+      "id": 0,
+      "name": "Gallery (all parts)",
+      "type": "pose"
+    },
+    {
+      "id": 1,
+      "name": "Raspberry Pi 5",
+      "type": "pose"
+    },
+    {
+      "id": 2,
+      "name": "Pi 5 + Active Cooler + AI HAT+ 2",
+      "type": "pose"
+    },
+    {
+      "id": 3,
+      "name": "Pico / Pico 2 W",
+      "type": "pose"
+    },
+    {
+      "id": 4,
+      "name": "Heltec WiFi LoRa 32 V4",
+      "type": "pose"
+    },
+    {
+      "id": 5,
+      "name": "RTL-SDR bare PCB",
+      "type": "pose"
+    },
+    {
+      "id": 6,
+      "name": "FE1.1S USB hub",
+      "type": "pose"
+    },
+    {
+      "id": 7,
+      "name": "TP4056 charger",
+      "type": "pose"
+    },
+    {
+      "id": 8,
+      "name": "5V boost",
+      "type": "pose"
+    },
+    {
+      "id": 9,
+      "name": "SRD-05 relay",
+      "type": "pose"
+    },
+    {
+      "id": 10,
+      "name": "USB-C PD breakout",
+      "type": "pose"
+    },
+    {
+      "id": 11,
+      "name": "KERWINN barrier block",
+      "type": "pose"
+    },
+    {
+      "id": 12,
+      "name": "Perfboard 21x23",
+      "type": "pose"
+    },
+    {
+      "id": 13,
+      "name": "TPS43 trackpad",
+      "type": "pose"
+    },
+    {
+      "id": 14,
+      "name": "6-pin FPC breakout",
+      "type": "pose"
+    },
+    {
+      "id": 15,
+      "name": "7\" DSI display",
+      "type": "pose"
+    },
+    {
+      "id": 16,
+      "name": "3.12\" SSD1322 OLED",
+      "type": "pose"
+    },
+    {
+      "id": 17,
+      "name": "5mm LED bezel",
+      "type": "pose"
+    },
+    {
+      "id": 18,
+      "name": "16mm pushbutton",
+      "type": "pose"
+    },
+    {
+      "id": 19,
+      "name": "SMA bulkhead",
+      "type": "pose"
+    },
+    {
+      "id": 20,
+      "name": "LiPo 6000mAh",
+      "type": "pose"
+    },
+    {
+      "id": 21,
+      "name": "M.2 2280 SSD",
+      "type": "pose"
+    },
+    {
+      "id": 22,
+      "name": "MX switch + keycap",
+      "type": "pose"
+    },
+    {
+      "id": 30,
+      "name": "Cutter check panel",
+      "type": "pose"
+    },
+    {
+      "id": 40,
+      "name": "NopSCADlib: side by side",
+      "type": "pose"
+    },
+    {
+      "id": 41,
+      "name": "NopSCADlib: overlay",
+      "type": "pose"
+    }
+  ],
+  "variables": [],
+  "color_schemes": [
+    "qa"
+  ]
+}

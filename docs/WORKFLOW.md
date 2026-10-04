@@ -112,6 +112,7 @@ Optional `"parts": [1, 3]` solos the listed parts (same as `PARTS=`).
 
 ## Live REPL
 
+`make start` (from the root or any project folder) or
 `python3 scripts/qa-repl.py` opens a curses-style panel that edits the
 project's `<project>_qa.scad` in place. OpenSCAD picks up every change via
 auto-reload. Surface what shows up by editing `repl-config.json`. Full schema
@@ -125,7 +126,8 @@ bash scripts/export_parts.sh tests  # every test mode
 bash scripts/export_parts.sh 5 6 8  # explicit mode ids
 ```
 
-Output: `projects/<slug>/build/<stl_name>.stl`.
+Output: `build/<slug>/<stl_name>.stl` at the workbench root, one folder per
+project.
 
 ## When something looks wrong
 
@@ -150,5 +152,5 @@ projects/<slug>/
 ├── playground.json              # paths + build dir
 ├── repl-config.json             # parts, modes, variables, color schemes
 ├── data/                        # qa-part-views.json, optional overlap-pairs.json, etc.
-└── build/                       # gitignored; STLs and qa/ folder
+└── build/                       # gitignored; qa/ folder (STLs go to the root build/<slug>/)
 ```

@@ -10,17 +10,21 @@ A monorepo template for OpenSCAD parametric design. Ships with a config-driven R
 ## What lives here
 
 ```
-.agents/skills/verify-design/   QA scripts + skill + REPL engine (shared by all projects)
+.agents/skills/verify-design/   QA scripts + the skill agents invoke
 docs/                           OpenSCAD CLI notes, workflow guide, REPL schema
-projects/                       One folder per object (see example-bracket/)
-scripts/                        Top-level CLI wrappers (qa-*, export_parts, new-project)
+lib/components/                 Measured models of real boards and panel parts
+lib/NopSCADlib/                 NopSCADlib (submodule): hundreds more bought parts
+projects/                       One folder per object (see example-bracket/ and component-gallery/)
+scripts/                        The REPL and CLI wrappers (qa-*, export_parts, new-project)
+build/<project>/                Exported STLs (gitignored)
 playground.scad                 Global viewer — open in OpenSCAD; follows the active project
 ```
 
 ## Prerequisites
 
 - [OpenSCAD](https://openscad.org/downloads.html#snapshots) nightly build
-- Python 3 + `prompt_toolkit` (`pip install prompt_toolkit>=3.0.43`)
+- Python 3. `make start` installs `prompt_toolkit` from `requirements.txt` the first time
+- After cloning: `git submodule update --init` for NopSCADlib
 - [`bd` (beads)](https://github.com/gastownhall/beads) for issue tracking (agents use this; humans can skip it)
 
 ## Recommended workflow
@@ -29,10 +33,10 @@ Open the global viewer in OpenSCAD, then launch the REPL:
 
 ```bash
 open -a OpenSCAD playground.scad   # macOS — open once, leave it open
-python ./scripts/qa-repl.py
+make start                         # from the root, or from any projects/<slug>/
 ```
 
-The REPL auto-detects the active project, loads its `repl-config.json`, and renders the panel.
+The REPL auto-detects the active project (from the folder you are in, or the last one you picked), loads its `repl-config.json`, and renders the panel.
 
 ### How the REPL works
 
@@ -56,7 +60,7 @@ The REPL reads `repl-config.json` from the active project and renders a live pan
 | `n` / `p` | Next / previous mode |
 | `c` | Cycle color scheme |
 | `a` | Show all parts |
-| `1`-`9` | Toggle part N |
+| `0`-`9` | Pick item N in the focused section (mode id, part, variable, color scheme) |
 | `g` | Switch project (viewer follows without a restart) |
 | `e` / `E` | Export this project's / all projects' STLs headlessly |
 | `x` | Toggle xray (parts go translucent so you can see inside) |
@@ -76,7 +80,8 @@ export PLAYGROUND_PROJECT=example-bracket
 # Render the catalog of QA views for mode 5 (the printable bracket):
 bash scripts/qa-views.sh 5 example_bracket
 
-# Export STLs for all "print" modes declared in repl-config.json:
+# Export STLs for all "print" modes declared in repl-config.json,
+# to build/example-bracket/<STL_NAME>.stl:
 bash scripts/export_parts.sh
 ```
 
@@ -88,7 +93,9 @@ $EDITOR projects/widget/widget.scad
 $EDITOR projects/widget/repl-config.json
 ```
 
-See `docs/NEW_PROJECT.md` for the full walkthrough.
+Before modelling anything you would buy (a board, sensor, servo, screw),
+check `lib/components/` and `lib/NopSCADlib/vitamins/`. See
+`docs/NEW_PROJECT.md` for the full walkthrough.
 
 ## Reading order
 

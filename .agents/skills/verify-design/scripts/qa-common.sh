@@ -477,8 +477,16 @@ qa_create_sandbox() {
   if [[ ! -f "$pd/$PROJECT_SCAD" ]]; then
     echo "ERROR: qa_create_sandbox: $pd/$PROJECT_SCAD does not exist" >&2; return 1
   fi
-  local sandbox
-  sandbox=$(mktemp -d "${TMPDIR:-/tmp}/qa_sandbox.XXXXXX") || return 1
+  # Mirror the workbench layout (<root>/projects/<slug> next to <root>/lib) so
+  # a project's `include <../../lib/...>` resolves the same in the sandbox as
+  # it does in the GUI.
+  local root sandbox
+  root=$(mktemp -d "${TMPDIR:-/tmp}/qa_sandbox.XXXXXX") || return 1
+  sandbox="$root/projects/$(basename "$pd")"
+  mkdir -p "$sandbox"
+  local wb
+  wb=$(cd "$pd/../.." && pwd)
+  [[ -d "$wb/lib" ]] && ln -s "$wb/lib" "$root/lib"
 
   local item name
   for item in "$pd"/*; do
@@ -499,7 +507,7 @@ qa_create_sandbox() {
   local tmpl="$pd/$PROJECT_QA_TEMPLATE"
   if [[ ! -f "$tmpl" ]]; then
     echo "ERROR: qa_create_sandbox: missing $tmpl" >&2
-    rm -rf "$sandbox"; return 1
+    rm -rf "$root"; return 1
   fi
   cp "$tmpl" "$sandbox/$PROJECT_QA_SCAD"
 
@@ -510,6 +518,7 @@ qa_cleanup_sandbox() {
   local sandbox="$1"
   if [[ -z "$sandbox" || "$sandbox" == "/" ]]; then return 1; fi
   case "$sandbox" in
+    */qa_sandbox.*/projects/*) rm -rf "${sandbox%/projects/*}" ;;
     */qa_sandbox.*) rm -rf "$sandbox" ;;
     *) echo "WARNING: qa_cleanup_sandbox: refusing to remove '$sandbox'" >&2; return 1 ;;
   esac

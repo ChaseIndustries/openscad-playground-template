@@ -121,6 +121,7 @@ in `docs/REPL.md`.
 ## STL export
 
 ```bash
+make export                         # root: every project. projects/<slug>/: just that one
 bash scripts/export_parts.sh        # every print mode in repl-config.json
 bash scripts/export_parts.sh tests  # every test mode
 bash scripts/export_parts.sh 5 6 8  # explicit mode ids

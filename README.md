@@ -83,6 +83,10 @@ bash scripts/qa-views.sh 5 example_bracket
 # Export STLs for all "print" modes declared in repl-config.json,
 # to build/example-bracket/<STL_NAME>.stl:
 bash scripts/export_parts.sh
+
+# Or let make do it. From the root it exports every project,
+# from projects/<slug>/ just that one:
+make export
 ```
 
 ## Add a new project

@@ -11,6 +11,8 @@
 #   ./scripts/export_parts.sh all          # both
 #   ./scripts/export_parts.sh 5 6 8        # specific mode numbers
 #
+# Exits nonzero when any part fails to export.
+#
 # Env: OPENSCAD=  PLAYGROUND_PROJECT=
 set -euo pipefail
 
@@ -94,13 +96,15 @@ while IFS=$'\t' read -r mode name; do
   [[ -z "$mode" ]] && continue
   out="$BUILD/${name}.stl"
   echo -n "Exporting mode $mode → $out ... "
-  if "$OPENSCAD" -o "$out" --render --export-format binstl -D "mode=$mode" "$PROJECT_SCAD" 2>/dev/null; then
+  if err=$("$OPENSCAD" -o "$out" --render --export-format binstl -D "mode=$mode" "$PROJECT_SCAD" 2>&1); then
     echo "OK"; PASS=$((PASS+1))
   else
-    echo "FAILED"; FAIL=$((FAIL+1))
+    echo "FAILED"; FAIL=$((FAIL+1)); rm -f "$out"
+    echo "$err" | tail -5 | sed 's/^/    /'
   fi
 done <<< "$MODES"
 
 echo ""
 echo "$PASS exported, $FAIL failed"
-ls -lh "$BUILD"/*.stl 2>/dev/null
+ls -lh "$BUILD"/*.stl 2>/dev/null || true
+[[ "$FAIL" -eq 0 ]]

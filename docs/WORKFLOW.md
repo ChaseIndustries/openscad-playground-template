@@ -130,6 +130,11 @@ bash scripts/export_parts.sh 5 6 8  # explicit mode ids
 Output: `build/<slug>/<stl_name>.stl` at the workbench root, one folder per
 project.
 
+Exports render in a sandbox with a fresh QA file from
+`<slug>_qa.scad.template`, so REPL tweaks in your local `<slug>_qa.scad`
+never leak into an STL. Change a default in `<slug>_defaults.scad` (or the
+entry SCAD) to change what prints.
+
 ## When something looks wrong
 
 Quick first-pass checks:

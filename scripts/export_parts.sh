@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Export all printable STL parts for the active openscad-playground project.
 #
-# Writes build/<project>/<stl_name>.stl at the workbench root.
+# Writes build/<project>/<stl_name>.stl at the workbench root. The QA file
+# comes fresh from <project>_qa.scad.template, not the local one.
 # Modes/names come from the project's repl-config.json (entries where
 # type == "print" — stl_name is the output basename).
 #
@@ -39,8 +40,11 @@ if [[ ! -f "$REPL_CFG" ]]; then
 fi
 
 mkdir -p "$BUILD"
-cd "$PLAYGROUND_PROJECT_DIR"
-qa_ensure_view_camera || exit 1
+# Export from a sandbox with a fresh QA file from the template, so STLs come
+# from committed files and never from whatever the GUI session has tweaked.
+SANDBOX=$(qa_create_sandbox) || exit 1
+trap 'qa_cleanup_sandbox "$SANDBOX"' EXIT
+cd "$SANDBOX"
 
 _filter="${1:-print}"
 shift || true

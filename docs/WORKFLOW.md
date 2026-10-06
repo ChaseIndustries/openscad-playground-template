@@ -148,6 +148,7 @@ Quick first-pass checks:
 ```
 projects/<slug>/
 ├── <slug>.scad                  # entry point with mode switch
+├── <slug>_defaults.scad         # defaults the QA file overrides; included before it
 ├── <slug>_qa.scad.template      # committed; ephemeral state goes in <slug>_qa.scad
 ├── <slug>_qa.scad               # gitignored; auto-created from template
 ├── playground.json              # paths + build dir

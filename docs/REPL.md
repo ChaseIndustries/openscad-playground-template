@@ -49,8 +49,10 @@ live.
 | `group`  | string | Optional grouping header in the panel |
 | `orient` | string | Optional one-liner reminding which side faces where |
 
-For each part the SCAD entry file (and the `_qa.scad.template`) must declare a
-matching boolean: `viz_show_part_1 = true;`. The geometry then checks
+For each part `<slug>_defaults.scad` (and the `_qa.scad.template`) must declare a
+matching boolean: `viz_show_part_1 = true;`. Keep these out of the entry
+SCAD. An assignment there beats the QA file, so the REPL toggle does
+nothing, or it warns if it sits above the QA include. The geometry then checks
 `if (viz_show_part_1) base_part();` to honor it.
 
 ### `modes`
@@ -153,7 +155,7 @@ parts, use `PARTS=name` / `HIDE=name` env vars at the command line instead
 
 ## Adding a new variable end-to-end
 
-1. Declare a default in the entry SCAD: `my_var = 0;`
+1. Declare a default in `<slug>_defaults.scad`: `my_var = 0;`
 2. Reference it where it matters: `rotate([my_var, 0, 0]) ...`
 3. Add a line to `<slug>_qa.scad.template`: `my_var = 0;`
 4. Add an entry to `repl-config.json`:

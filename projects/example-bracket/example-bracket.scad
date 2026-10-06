@@ -11,6 +11,7 @@
 //   open Cyberdeck.scad equivalent: open OpenSCAD on this file
 //   python3 scripts/qa-repl.py    # opens a TTY control panel
 
+include <example-bracket_defaults.scad>;
 include <example-bracket_qa.scad>;
 
 $fn = 64;
@@ -43,14 +44,6 @@ lid_t = base_t;
 hinge_r = 4;
 hole_d  = 4;
 hole_inset = 5;
-
-// ── Per-part visibility defaults (overridable from qa.scad / PARTS=) ─
-viz_show_part_1 = true;  // base
-viz_show_part_2 = true;  // lid
-viz_show_part_3 = true;  // plate
-
-// REPL-exposed variables (declared here as defaults; qa.scad overrides).
-lid_angle = 0;          // degrees, 0 = closed
 
 // ── Primitive parts ───────────────────────────────────────────────
 module base_part() {

@@ -34,6 +34,7 @@ cat > "$DIR/${SLUG}.scad" <<EOF
 // ${SLUG}.scad — entry point for the '${SLUG}' project.
 // Switch what gets rendered/exported via -D mode=N (or set mode in ${SLUG}_qa.scad).
 
+include <${SLUG}_defaults.scad>;
 include <${SLUG}_qa.scad>;
 // Bought parts: check lib/components (README) and lib/NopSCADlib/vitamins
 // before modelling one. For example:
@@ -64,6 +65,20 @@ module body() {
 if (mode == SHOW_ASSEMBLY) body();
 else if (mode == PRINT_BODY) body();
 else assert(false, str("Unknown mode: ", mode));
+EOF
+
+cat > "$DIR/${SLUG}_defaults.scad" <<EOF
+// Defaults for everything ${SLUG}_qa.scad may override: part visibility,
+// preview settings and REPL variables. They live in their own include
+// because OpenSCAD only lets a later include override an earlier one
+// silently. Assigned in the entry SCAD, they either beat the QA file or
+// earn a warning per variable.
+
+// Per-part visibility, one line per repl-config.json "parts" entry.
+//viz_show_part_1 = true;
+
+// REPL variables, one line per repl-config.json "variables" entry.
+//lid_angle = 0;
 EOF
 
 cat > "$DIR/${SLUG}_qa.scad.template" <<EOF

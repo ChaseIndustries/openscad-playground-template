@@ -12,6 +12,7 @@ $EDITOR projects/widget/repl-config.json
 That gives you a working skeleton with:
 
 - `widget.scad` — entry SCAD with one example part and a mode switch
+- `widget_defaults.scad` — defaults for everything the QA file may override
 - `widget_qa.scad.template` — committed QA template
 - `widget_qa.scad` — created on first QA run from the template (gitignored)
 - `playground.json` — paths
@@ -43,6 +44,7 @@ That gives you a working skeleton with:
 ```
 projects/widget/
 ├── widget.scad
+├── widget_defaults.scad        # committed; part visibility + REPL variable defaults
 ├── widget_qa.scad.template     # committed
 ├── widget_qa.scad              # gitignored; auto-created
 ├── playground.json
